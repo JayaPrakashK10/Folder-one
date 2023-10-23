@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+
+
+	<style type="text/css">
+		body{
+			background-color: lightgrey;
+		}
+		form{
+			margin:50px;
+			background-color: black;
+			width:258px;
+			height:352px;
+		}
+		#tbNum{
+			background-color: white;
+  			width: 249px;
+  			height: 70px;
+  			font-size: 25px;
+  			margin-left: -3px;
+  			border: none;
+  			margin-top: -2px;
+  			
+		}
+		input[type="button"],[type="submit"]{
+			background-color:black;
+			 width: 80px;
+  			height: 65px;
+  			font-size: 16px;
+  			border: 0px;
+  			color:white;
+        cursor: pointer;
+
+		}
+		#add,#sub,#div,#mul{
+			background-color: #5c5e5d;
+		}
+		#acc{
+			background-color: green;
+		}
+
+		.hello{
+			background-color: #5c5e5d;
+			margin-left:254px;
+  			width: 88px;
+  			height: 285px;
+  			font-size: 25px;
+  			margin-top:-282px;
+		}
+
+		.hiii{
+			background-color: green;
+			margin-left:254px;
+  			width: 88px;
+  			height: 75px;
+  			font-size: 25px;
+  			margin-top: -354px;
+
+		}
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.blinking {
+  animation: blink 0.5s 0.5;
+}
+
+	</style>
+</head>
+
+
+
+<body >
+
+	<center>
+	<form>
+
+	<table border="0">
+		<tr>
+			<td colspan="3"><input type="text" value="" id="tbNum" autofocus></td>
+			<td><input type="button" value="AC" onclick="clearDis()" id="acc"></td>
+		</tr>
+		<tr>
+				<td><input type="button" value="9" onclick="addToBox('9')"></td>
+				<td><input type="button" value="8" onclick="addToBox('8')"></td>
+				<td><input type="button" value="7" onclick="addToBox('7')"></td>
+				<td><input type="button" value="+" id="add" onclick="addToBox('+')"></td>
+		</tr>
+		<tr>
+				<td><input type="button" value="4" onclick="addToBox('4')"></td>
+				<td><input type="button" value="5" onclick="addToBox('5')"></td>
+				<td><input type="button" value="6" onclick="addToBox('6')"></td>
+				<td><input type="button" value="-" id="sub" onclick="addToBox('-')"></td>
+		</tr>
+		<tr>
+				<td><input type="button" value="1" id="one" onclick="addToBox('1')" ></td>
+				<td><input type="button" value="2" id="two" onclick="addToBox('2')"></td>
+				<td><input type="button" value="3" id="three" onclick="addToBox('3')"></td>
+				<td><input type="button" value="/" id="div" onclick="addToBox('/')"></td>
+		</tr>
+		<tr>
+				<td><input type="button" value="." id="one" onclick="addToBox('.')" ></td>
+				<td><input type="button" value="0" id="two" onclick="addToBox('0')"></td>
+				<td ><input type="button" value="="  onclick="operation()" ></td>
+				<td><input type="button" value="*" id="mul" onclick="addToBox('*')"></td>
+			<td></td>			
+		</tr>	
+	</table>
+		<div class="hello"></div>
+		<div class="hiii"></div>
+	</form>
+	</center>
+</body>
+
+
+<script type="text/javascript">
+	function addToBox(val)
+{
+	document.getElementById('tbNum').value +=val;
+
+	//document.getElementById('one').style.backgroundColor = "blue";
+	
+}
+
+function clearDis()
+{
+	document.getElementById('tbNum').value ="";
+}
+
+
+function operation()
+{
+	debugger;
+	var opera=document.getElementById('tbNum').value;
+
+            var result = eval(opera);
+            document.getElementById("tbNum").value = result;
+}
+
+        document.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                	 event.preventDefault();
+                   	 operation();
+                }
+        });
+
+document.getElementById("startButton").addEventListener("click", function() {
+  var startButton = document.getElementById("startButton");
+  startButton.classList.add("blinking");
+
+  // Remove the blinking class after 1 second
+  setTimeout(function() {
+    startButton.classList.remove("blinking");
+  }, 1000); // 1000 milliseconds = 1 second
+});
+
+
+
+</script>
+
+
+</html>

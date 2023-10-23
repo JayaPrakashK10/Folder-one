@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		body{
+			background-color: skyblue;
+		}
+		#box{
+			width:400px;
+			height: 50px;
+			border: black 1px solid;
+			resize: none;
+		}
+		form{
+			display: flex;
+			width: 480px;
+			height: 500px;
+			background-color: white;
+
+    		position: absolute;
+    		top: 50%;
+    		left: 50%;
+    		transform: translate(-50%, -50%);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		}
+		div{
+			margin: 17px 21px;
+		}
+
+		#tbName,#tbEmail{
+			width: 200px;
+			height: 25px;
+			border: black 1px solid;
+		}
+
+		input[type=Submit],input[type=Reset]
+		{
+			background-color: powderblue;
+			padding:7px 25px ;
+			cursor: pointer;
+		}
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            margin-top: -18px;
+            margin-bottom: -18px;
+        }
+        .table-container {
+            margin-left: -25px;
+        }
+        .ttb{
+        	margin-left: -43px;
+        }
+
+	</style>
+</head>
+<body>
+		<h1 align="center">Customer Survey Form</h1>
+	<form  id="myForm" onsubmit="return validateForm() && hello()"  autocomplete="off">
+	<div>
+
+	<div class="flex-container">
+		<div>
+			<table class="table-container ttb">
+			<tr><td>Name</td></tr>
+			<tr><td><input type="text" id="tbName" autofocus required></td></tr>
+			</table>
+		</div>
+
+		<div>
+			<table class="table-container">
+			<tr><td>Email</td></tr>
+			<tr><td><input type="email" id=tbEmail ></td></tr>
+			</table>
+		</div>
+	</div>
+		
+
+		<p>Is this first time You are using our products & services ?</p>
+		<input type="radio" name="first">Yes
+		<input type="radio" name="first">No
+
+		<p>Would you suggest to your friends and collegues ?</p>
+		<input type="radio" name="second">Yes
+		<input type="radio" name="second">No
+
+		<p>How satisfied are you with our comapany overall ?</p>
+		<input type="radio" name="third">Satisfied
+		<input type="radio" name="third">Undecided
+		<input type="radio" name="third">Unsatisfied
+
+		<p>Do you have suggestion to improve our service ?</p>
+		<textarea type="text" id="box" rows="4" cols="50"  ></textarea><br><br></br>
+
+		<input type="submit" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="Reset">
+	</div>
+	</form>
+</body>
+	<script>
+		function validateForm()
+		{
+		x1=document.getElementById('tbName').value;
+		x2=document.getElementById('tbEmail').value;
+
+
+		namePattern = /^(?=\S)(?!.*\s$)(?!^\d+$)[A-Za-z\s.]{2,}$/;
+
+		  if (!namePattern.test(x1)) 
+		  {
+    		alert("Please enter a valid name. Use only letters, spaces");
+    		return false; // Prevent form submission
+  		   }			
+  		  return true;
+
+
+	  	epattern=/^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+
+		  if (!epattern.test(x2)) 
+		  {
+    		alert("Please enter a valid email");
+    		return false; // Prevent form submission
+  		   }			
+  			  return true;
+		}
+
+
+	    function hello() 
+	    {
+	    	debugger;
+	        if (!validateRadioGroup("first")    || !validateRadioGroup("second") || !validateRadioGroup("third")) {
+	            alert("Please select all suggestions.");
+	            return false; // Prevent form submission
+	        }
+	    };
+
+	    function validateRadioGroup(groupName) {
+	        var radioButtons = document.getElementsByName(groupName);
+
+	        for (var i = 0; i < radioButtons.length; i++) {
+	            if (radioButtons[i].checked) {
+	                return true;
+	            }
+	        }
+
+	        return false;
+	    }
+
+	</script>
+</html>
